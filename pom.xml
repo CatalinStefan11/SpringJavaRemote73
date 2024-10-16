@@ -17,6 +17,8 @@
     <modules>
         <module>_1_lombok-example</module>
         <module>_2_json-example</module>
+        <module>_3_dependency-injection</module>
+        <module>_4_spring-di</module>
     </modules>
 
 
