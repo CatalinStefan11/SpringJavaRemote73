@@ -19,6 +19,9 @@
         <module>_2_json-example</module>
         <module>_3_dependency-injection</module>
         <module>_4_spring-di</module>
+        <module>_5_spring-hello-service</module>
+        <module>_6_spring-aop</module>
+        <module>_7_spring-database-transactional</module>
     </modules>
 
 
