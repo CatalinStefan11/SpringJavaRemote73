@@ -22,6 +22,8 @@
         <module>_5_spring-hello-service</module>
         <module>_6_spring-aop</module>
         <module>_7_spring-database-transactional</module>
+        <module>_8_spring-boot-first-app</module>
+        <module>_9_spring-boot-rest-app</module>
     </modules>
 
 
