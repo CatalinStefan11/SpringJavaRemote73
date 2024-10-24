@@ -24,6 +24,7 @@
         <module>_7_spring-database-transactional</module>
         <module>_8_spring-boot-first-app</module>
         <module>_9_spring-boot-rest-app</module>
+        <module>_10_spring-boot-product-app</module>
     </modules>
 
 
