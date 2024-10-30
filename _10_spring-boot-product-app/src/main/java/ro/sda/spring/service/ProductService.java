@@ -28,4 +28,24 @@ public class ProductService {
         log.info("Attempt to retrieve all the products from the database");
         return productRepository.getAllProducts();
     }
+
+    public Product getById(int id) {
+        log.info("Attempt to retrieve the product with id {}", id);
+        return productRepository.getById(id);
+    }
+
+    public void update(int id, Product p) {
+        log.info("Attempt to update product with id {}", id);
+        productRepository.update(id, p);
+    }
+
+    public void delete(int id) {
+        log.info("Attempt to delete product with id {}", id);
+        productRepository.delete(id);
+    }
+
+    public List<Product> getProductsWithPriceGraterThan(int price) {
+        log.info("Attempt to retrieve all the products with price grater than {}", price);
+        return productRepository.queryPriceGraterThan(price);
+    }
 }

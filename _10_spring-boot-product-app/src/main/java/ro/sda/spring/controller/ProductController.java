@@ -26,4 +26,25 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @GetMapping("/product/{id}")
+    public Product findById(@PathVariable("id") int id) {
+        return productService.getById(id);
+    }
+
+    @PutMapping("/product/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void update(@PathVariable("id") int id, @RequestBody Product p) {
+        productService.update(id, p);
+    }
+
+    @DeleteMapping("/product/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") int id) {
+        productService.delete(id);
+    }
+
+    @GetMapping("/filter-products")
+    public List<Product> getProductsWithPriceGreaterThan(@RequestParam("price") int price) {
+        return productService.getProductsWithPriceGraterThan(price);
+    }
 }
