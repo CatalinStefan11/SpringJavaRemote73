@@ -6,7 +6,7 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class TestService implements InitializingBean, DisposableBean {
 
     @PostConstruct

@@ -1,7 +1,7 @@
 package ro.sda.spring.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.sda.spring.dto.Book;
 import ro.sda.spring.service.BookService;
@@ -18,12 +18,23 @@ public class BookController {
 
     @PostMapping("/book")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addBook(@RequestBody Book b) {
+    public void addBook(@Valid @RequestBody Book b) {
         bookService.addBook(b);
     }
 
     @GetMapping("/book")
     public List<Book> getAllBooks() {
         return bookService.getAllBooks();
+    }
+
+    @GetMapping("/book/{i}")
+    public Book getById(@PathVariable("i") int id) {
+        return bookService.getById(id);
+    }
+
+    @DeleteMapping("/book/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable("id") long id) {
+        bookService.deleteById(id);
     }
 }
