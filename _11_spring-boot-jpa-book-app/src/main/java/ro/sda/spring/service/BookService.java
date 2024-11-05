@@ -1,7 +1,9 @@
 package ro.sda.spring.service;
 
+import jakarta.annotation.Nullable;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ro.sda.spring.dto.Book;
 import ro.sda.spring.exception.BookAppException;
@@ -25,9 +27,9 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public List<Book> getAllBooks() {
+    public Page<Book> getAllBooks(Pageable pageable) {
         log.info("Attempt to retrieve all the books from the database");
-        return bookRepository.findAll();
+        return bookRepository.findAll(pageable);
     }
 
     public Book getById(long id) {
@@ -44,9 +46,34 @@ public class BookService {
     public void deleteById(long id) {
         log.info("Attempt to delete book with id {} from the database", id);
 
-        if(!bookRepository.existsById(id))
+        if (!bookRepository.existsById(id))
             throw new BookAppException("Book with id " + id + " not found. Nothing to delete");
 
         bookRepository.deleteById(id);
+    }
+
+    public void updateById(long id, Book toUpdate) {
+        log.info("Attempt to update book with id {} from the database", id);
+
+        if (!bookRepository.existsById(id))
+            throw new BookAppException("Book with id " + id + " not found! Nothing to update");
+
+        toUpdate.setId(id);
+        bookRepository.save(toUpdate);
+    }
+
+    public List<Book> getBooksUsingFilters(double price, @Nullable String title) {
+        log.info("Attempt to retrieve books using filters from the database.");
+
+        List<Book> bookList;
+
+        if (title != null && price > 0)
+            bookList = bookRepository.findByPriceGreaterThanAndTitleContains(price, title);
+        else if (price > 0)
+            bookList = bookRepository.findByPriceGreaterThan(price);
+        else
+            bookList = bookRepository.findByTitleContains(title);
+
+        return bookList;
     }
 }

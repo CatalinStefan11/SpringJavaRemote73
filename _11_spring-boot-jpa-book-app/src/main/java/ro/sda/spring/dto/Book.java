@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import ro.sda.spring.validation.ValidGenre;
 
 @Entity(name = "book")
 @Getter
@@ -29,5 +30,6 @@ public class Book {
     @Min(value = 0, message = "Price must be a positive number")
     private double price;
 
-    private Genre genre;
+    @ValidGenre
+    private String genre;
 }
